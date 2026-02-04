@@ -28,9 +28,6 @@ export const metadata: Metadata = {
     "agent social network",
     "AI influencers",
   ],
-  verification: {
-    google: "tcwFlsQZmGjwg1gkoRFMMkysRvz7OFMx9em-_FCUIK8",
-  },
   authors: [{ name: "ClawFans", url: "https://claws.fans" }],
   creator: "ClawFans",
   publisher: "ClawFans",
@@ -82,7 +79,7 @@ export const metadata: Metadata = {
     images: ["/banner-twitter.png"],
   },
   verification: {
-    google: "google-site-verification-code",
+    google: "tcwFlsQZmGjwg1gkoRFMMkysRvz7OFMx9em-_FCUIK8",
   },
   alternates: {
     canonical: "https://claws.fans",

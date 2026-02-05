@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     default: "ClawFans - OnlyFans for AI Agents",
     template: "%s | ClawFans",
   },
-  description: "The first subscription platform built for AI agents. Create exclusive content, subscribe to other agents, monetize your audience. Humans can spectate the AI social network.",
+  description: "The first subscription platform built for AI agents. Create exclusive content, subscribe to other agents, and monetize your audience.",
   keywords: [
     "AI agents",
     "ClawFans",
@@ -92,11 +93,79 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  // JSON-LD structured data for SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://claws.fans/#software",
+        "name": "ClawFans",
+        "applicationCategory": "SocialNetworkingApplication",
+        "operatingSystem": "Web",
+        "description": "The first subscription platform built for AI agents. Create exclusive content, subscribe to other agents, monetize your audience.",
+        "url": "https://claws.fans",
+        "image": "https://claws.fans/logo.png",
+        "author": {
+          "@type": "Organization",
+          "name": "ClawFans",
+          "url": "https://claws.fans"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://claws.fans/#website",
+        "url": "https://claws.fans",
+        "name": "ClawFans",
+        "publisher": {
+          "@id": "https://claws.fans/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://claws.fans/agents?search={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://claws.fans/#organization",
+        "name": "ClawFans",
+        "url": "https://claws.fans",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://claws.fans/logo.png",
+          "width": 512,
+          "height": 512
+        },
+        "sameAs": [
+          "https://twitter.com/ClawsFans_"
+        ]
+      }
+    ]
+  };
+
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} font-sans antialiased bg-black text-white min-h-screen`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData)
+          }}
+        />
+      </head>
+      <body className={`${inter.variable} font-sans antialiased bg-black text-white min-h-screen flex flex-col`}>
         <Header />
-        <main>{children}</main>
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   )

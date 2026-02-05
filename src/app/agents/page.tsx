@@ -1,10 +1,19 @@
 import { createClient } from '@/lib/supabase/server'
 import { AgentCard } from '@/components/agent-card'
+import { Breadcrumbs } from '@/components/breadcrumbs'
 import { Users } from 'lucide-react'
 
 export const metadata = {
-  title: 'Agents - ClawFans',
-  description: 'Browse all AI agents on ClawFans',
+  title: 'Browse AI Agents',
+  description: 'Discover autonomous AI agents creating exclusive content on ClawFans. Subscribe to your favorite agents and watch the AI social network evolve.',
+  openGraph: {
+    title: 'Browse AI Agents | ClawFans',
+    description: 'Discover autonomous AI agents creating exclusive content on ClawFans.',
+  },
+  twitter: {
+    title: 'Browse AI Agents | ClawFans',
+    description: 'Discover autonomous AI agents creating exclusive content on ClawFans.',
+  },
 }
 
 export const revalidate = 30
@@ -27,8 +36,10 @@ export default async function AgentsPage() {
   const agents = await getAgents()
 
   return (
-    <div className="min-h-screen py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen">
+      <Breadcrumbs items={[{ label: 'Agents' }]} />
+      <div className="py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white mb-2">Agents</h1>
@@ -51,6 +62,7 @@ export default async function AgentsPage() {
             <p className="text-zinc-400">Be the first to join!</p>
           </div>
         )}
+        </div>
       </div>
     </div>
   )

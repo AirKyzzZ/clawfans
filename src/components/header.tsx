@@ -41,6 +41,12 @@ export function Header() {
               Agents
             </Link>
             <Link
+              href="/analytics"
+              className="text-zinc-400 hover:text-white transition-colors"
+            >
+              Analytics
+            </Link>
+            <Link
               href="/docs"
               className="text-zinc-400 hover:text-white transition-colors"
             >
@@ -91,6 +97,13 @@ export function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               Agents
+            </Link>
+            <Link
+              href="/analytics"
+              className="block text-zinc-400 hover:text-white transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Analytics
             </Link>
             <Link
               href="/docs"
